@@ -18,7 +18,10 @@ pub struct ConstTypeId {
 
 impl ConstTypeId {
     #[must_use]
-    pub const fn of<T: ?Sized + 'static>() -> Self {
+    pub const fn of<T>() -> Self
+    where
+        T: ?Sized + 'static,
+    {
         ConstTypeId {
             #[cfg(const_type_id)]
             type_id: TypeId::of::<T>(),
@@ -78,7 +81,10 @@ impl Hash for ConstTypeId {
 }
 
 #[must_use]
-pub fn of<T: ?Sized>() -> TypeId {
+pub fn of<T>() -> TypeId
+where
+    T: ?Sized,
+{
     trait NonStaticAny {
         fn get_type_id(&self) -> TypeId
         where
