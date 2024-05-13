@@ -1,9 +1,11 @@
-use std::any::TypeId;
-use std::cmp::Ordering;
-use std::fmt::{self, Debug};
-use std::hash::{Hash, Hasher};
-use std::marker::PhantomData;
-use std::mem;
+#![no_std]
+
+use core::any::TypeId;
+use core::cmp::Ordering;
+use core::fmt::{self, Debug};
+use core::hash::{Hash, Hasher};
+use core::marker::PhantomData;
+use core::mem;
 
 #[derive(Copy, Clone)]
 pub struct ConstTypeId {
