@@ -48,6 +48,12 @@ impl PartialEq for ConstTypeId {
     }
 }
 
+impl PartialEq<TypeId> for ConstTypeId {
+    fn eq(&self, other: &TypeId) -> bool {
+        self.get() == *other
+    }
+}
+
 impl Eq for ConstTypeId {}
 
 impl PartialOrd for ConstTypeId {
