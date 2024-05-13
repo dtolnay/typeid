@@ -7,6 +7,7 @@ use std::str;
 
 fn main() {
     println!("cargo:rerun-if-changed=build/probe.rs");
+    println!("cargo:rustc-check-cfg=cfg(const_type_id)");
 
     let const_type_id;
     let consider_rustc_bootstrap;
