@@ -10,3 +10,4 @@ repository = "https://github.com/dtolnay/typeid"
 
 [package.metadata.docs.rs]
 targets = ["x86_64-unknown-linux-gnu"]
+rustdoc-args = ["--generate-link-to-definition"]
