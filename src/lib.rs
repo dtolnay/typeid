@@ -1,4 +1,5 @@
 #![no_std]
+#![cfg_attr(const_type_id, feature(const_type_id))]
 
 use core::any::TypeId;
 use core::cmp::Ordering;
@@ -9,19 +10,28 @@ use core::mem;
 
 #[derive(Copy, Clone)]
 pub struct ConstTypeId {
+    #[cfg(const_type_id)]
+    type_id: TypeId,
+    #[cfg(not(const_type_id))]
     type_id_fn: fn() -> TypeId,
 }
 
 impl ConstTypeId {
     pub const fn of<T: ?Sized + 'static>() -> Self {
         ConstTypeId {
+            #[cfg(const_type_id)]
+            type_id: TypeId::of::<T>(),
+            #[cfg(not(const_type_id))]
             type_id_fn: TypeId::of::<T>,
         }
     }
 
     #[inline]
     fn get(self) -> TypeId {
-        (self.type_id_fn)()
+        #[cfg(const_type_id)]
+        return self.type_id;
+        #[cfg(not(const_type_id))]
+        return (self.type_id_fn)();
     }
 }
 
