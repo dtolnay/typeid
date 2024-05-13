@@ -2,6 +2,7 @@
 name = "typeid"
 version = "0.0.0"
 authors = ["David Tolnay <dtolnay@gmail.com>"]
+categories = ["no-std", "no-std::no-alloc"]
 description = "Const TypeId and non-'static TypeId"
 documentation = "https://docs.rs/typeid"
 edition = "2021"
