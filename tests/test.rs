@@ -11,6 +11,8 @@ fn test_non_static_type_id() {
     assert_ne!(typeid::of::<&usize>(), typeid::of::<&&usize>());
     assert_ne!(typeid::of::<&usize>(), typeid::of::<&mut usize>());
 
+    assert_ne!(typeid::of::<fn(&str)>(), typeid::of::<fn(&'static str)>());
+
     trait Trait<'a> {}
     assert_ne!(
         typeid::of::<dyn for<'a> Trait<'a>>(),
