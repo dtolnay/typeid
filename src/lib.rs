@@ -1,5 +1,6 @@
 #![no_std]
-#![cfg_attr(const_type_id, feature(const_type_id))]
+
+extern crate self as typeid;
 
 use core::any::TypeId;
 use core::cmp::Ordering;
@@ -10,9 +11,6 @@ use core::mem;
 
 #[derive(Copy, Clone)]
 pub struct ConstTypeId {
-    #[cfg(const_type_id)]
-    type_id: TypeId,
-    #[cfg(not(const_type_id))]
     type_id_fn: fn() -> TypeId,
 }
 
@@ -20,22 +18,16 @@ impl ConstTypeId {
     #[must_use]
     pub const fn of<T>() -> Self
     where
-        T: ?Sized + 'static,
+        T: ?Sized,
     {
         ConstTypeId {
-            #[cfg(const_type_id)]
-            type_id: TypeId::of::<T>(),
-            #[cfg(not(const_type_id))]
-            type_id_fn: TypeId::of::<T>,
+            type_id_fn: typeid::of::<T>,
         }
     }
 
     #[inline]
     fn get(self) -> TypeId {
-        #[cfg(const_type_id)]
-        return self.type_id;
-        #[cfg(not(const_type_id))]
-        return (self.type_id_fn)();
+        (self.type_id_fn)()
     }
 }
 
