@@ -88,3 +88,5 @@ jobs:
       - uses: dtolnay/rust-toolchain@miri
       - run: cargo miri setup
       - run: cargo miri test
+        env:
+          MIRIFLAGS: -Zmiri-strict-provenance
