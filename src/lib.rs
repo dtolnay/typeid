@@ -106,6 +106,7 @@
 //! ```
 
 #![no_std]
+#![allow(clippy::doc_markdown)]
 
 extern crate self as typeid;
 
