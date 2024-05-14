@@ -1,6 +1,11 @@
 Const `TypeId` and non-'static `TypeId`
 =======================================
 
+[<img alt="github" src="https://img.shields.io/badge/github-dtolnay/typeid-8da0cb?style=for-the-badge&labelColor=555555&logo=github" height="20">](https://github.com/dtolnay/typeid)
+[<img alt="crates.io" src="https://img.shields.io/crates/v/typeid.svg?style=for-the-badge&color=fc8d62&logo=rust" height="20">](https://crates.io/crates/typeid)
+[<img alt="docs.rs" src="https://img.shields.io/badge/docs.rs-typeid-66c2a5?style=for-the-badge&labelColor=555555&logo=docs.rs" height="20">](https://docs.rs/typeid)
+[<img alt="build status" src="https://img.shields.io/github/actions/workflow/status/dtolnay/typeid/ci.yml?branch=master&style=for-the-badge" height="20">](https://github.com/dtolnay/typeid/actions?query=branch%3Amaster)
+
 [`ConstTypeId`]: https://docs.rs/typeid/0/typeid/struct.ConstTypeId.html
 [`typeid::of`]: https://docs.rs/typeid/0/typeid/fn.of.html
 
