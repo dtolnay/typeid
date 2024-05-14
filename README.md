@@ -6,8 +6,8 @@ Const `TypeId` and non-'static `TypeId`
 [<img alt="docs.rs" src="https://img.shields.io/badge/docs.rs-typeid-66c2a5?style=for-the-badge&labelColor=555555&logo=docs.rs" height="20">](https://docs.rs/typeid)
 [<img alt="build status" src="https://img.shields.io/github/actions/workflow/status/dtolnay/typeid/ci.yml?branch=master&style=for-the-badge" height="20">](https://github.com/dtolnay/typeid/actions?query=branch%3Amaster)
 
-[`ConstTypeId`]: https://docs.rs/typeid/0/typeid/struct.ConstTypeId.html
-[`typeid::of`]: https://docs.rs/typeid/0/typeid/fn.of.html
+[`ConstTypeId`]: https://docs.rs/typeid/1/typeid/struct.ConstTypeId.html
+[`typeid::of`]: https://docs.rs/typeid/1/typeid/fn.of.html
 
 ### Const `TypeId`
 
