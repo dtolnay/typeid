@@ -107,7 +107,11 @@
 
 #![no_std]
 #![doc(html_root_url = "https://docs.rs/typeid/1.0.1")]
-#![allow(clippy::doc_markdown, clippy::inline_always)]
+#![allow(
+    clippy::doc_markdown,
+    clippy::inline_always,
+    clippy::unnecessary_cast, // https://github.com/rust-lang/rust-clippy/issues/12860
+)]
 
 extern crate self as typeid;
 
