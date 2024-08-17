@@ -8,7 +8,7 @@ documentation = "https://docs.rs/typeid"
 edition = "2018"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/dtolnay/typeid"
-rust-version = "1.34"
+rust-version = "1.75"
 
 [package.metadata.docs.rs]
 targets = ["x86_64-unknown-linux-gnu"]
