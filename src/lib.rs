@@ -194,6 +194,7 @@ impl Hash for ConstTypeId {
 }
 
 #[must_use]
+#[inline(always)]
 pub fn of<T>() -> TypeId
 where
     T: ?Sized,
@@ -205,6 +206,7 @@ where
     }
 
     impl<T: ?Sized> NonStaticAny for PhantomData<T> {
+        #[inline(always)]
         fn get_type_id(&self) -> TypeId
         where
             Self: 'static,
