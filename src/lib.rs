@@ -112,17 +112,22 @@
 extern crate self as typeid;
 
 use core::any::TypeId;
+#[cfg(not(no_const_type_id))]
 use core::cmp::Ordering;
+#[cfg(not(no_const_type_id))]
 use core::fmt::{self, Debug};
+#[cfg(not(no_const_type_id))]
 use core::hash::{Hash, Hasher};
 use core::marker::PhantomData;
 use core::mem;
 
+#[cfg(not(no_const_type_id))]
 #[derive(Copy, Clone)]
 pub struct ConstTypeId {
     type_id_fn: fn() -> TypeId,
 }
 
+#[cfg(not(no_const_type_id))]
 impl ConstTypeId {
     #[must_use]
     pub const fn of<T>() -> Self
@@ -140,12 +145,14 @@ impl ConstTypeId {
     }
 }
 
+#[cfg(not(no_const_type_id))]
 impl Debug for ConstTypeId {
     fn fmt(&self, formatter: &mut fmt::Formatter) -> fmt::Result {
         Debug::fmt(&self.get(), formatter)
     }
 }
 
+#[cfg(not(no_const_type_id))]
 impl PartialEq for ConstTypeId {
     #[inline]
     fn eq(&self, other: &Self) -> bool {
@@ -153,14 +160,17 @@ impl PartialEq for ConstTypeId {
     }
 }
 
+#[cfg(not(no_const_type_id))]
 impl PartialEq<TypeId> for ConstTypeId {
     fn eq(&self, other: &TypeId) -> bool {
         self.get() == *other
     }
 }
 
+#[cfg(not(no_const_type_id))]
 impl Eq for ConstTypeId {}
 
+#[cfg(not(no_const_type_id))]
 impl PartialOrd for ConstTypeId {
     #[inline]
     fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
@@ -168,6 +178,7 @@ impl PartialOrd for ConstTypeId {
     }
 }
 
+#[cfg(not(no_const_type_id))]
 impl Ord for ConstTypeId {
     #[inline]
     fn cmp(&self, other: &Self) -> Ordering {
@@ -175,6 +186,7 @@ impl Ord for ConstTypeId {
     }
 }
 
+#[cfg(not(no_const_type_id))]
 impl Hash for ConstTypeId {
     fn hash<H: Hasher>(&self, state: &mut H) {
         self.get().hash(state);
