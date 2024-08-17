@@ -123,6 +123,7 @@ use core::fmt::{self, Debug};
 #[cfg(not(no_const_type_id))]
 use core::hash::{Hash, Hasher};
 use core::marker::PhantomData;
+use core::ptr;
 
 #[cfg(not(no_const_type_id))]
 #[derive(Copy, Clone)]
@@ -220,6 +221,6 @@ where
 
     let phantom_data = PhantomData::<T>;
     NonStaticAny::get_type_id(unsafe {
-        &*(&phantom_data as *const dyn NonStaticAny as *const (dyn NonStaticAny + 'static))
+        &*(ptr::addr_of!(phantom_data) as *const (dyn NonStaticAny + 'static))
     })
 }
