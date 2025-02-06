@@ -24,7 +24,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        rust: [nightly, beta]
+        rust: [nightly, beta, 1.79.0]
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
