@@ -107,7 +107,9 @@
 
 #![no_std]
 #![doc(html_root_url = "https://docs.rs/typeid/1.0.2")]
+#![feature(arbitrary_self_types, derive_coerce_pointee)]
 #![allow(clippy::doc_markdown, clippy::inline_always)]
+#![forbid(unsafe_code)]
 
 extern crate self as typeid;
 
@@ -118,8 +120,8 @@ use core::cmp::Ordering;
 use core::fmt::{self, Debug};
 #[cfg(not(no_const_type_id))]
 use core::hash::{Hash, Hasher};
-use core::marker::PhantomData;
-use core::mem;
+use core::marker::{CoercePointee, PhantomData};
+use core::ops::Deref;
 
 #[cfg(not(no_const_type_id))]
 #[derive(Copy, Clone)]
@@ -199,15 +201,27 @@ pub fn of<T>() -> TypeId
 where
     T: ?Sized,
 {
+    #[derive(CoercePointee)]
+    #[repr(transparent)]
+    struct SelfPtr<T: ?Sized>(*const T);
+
+    impl<T: ?Sized> Deref for SelfPtr<T> {
+        type Target = T;
+
+        fn deref(&self) -> &T {
+            unimplemented!()
+        }
+    }
+
     trait NonStaticAny {
-        fn get_type_id(&self) -> TypeId
+        fn get_type_id(self: SelfPtr<Self>) -> TypeId
         where
             Self: 'static;
     }
 
     impl<T: ?Sized> NonStaticAny for PhantomData<T> {
         #[inline(always)]
-        fn get_type_id(&self) -> TypeId
+        fn get_type_id(self: SelfPtr<Self>) -> TypeId
         where
             Self: 'static,
         {
@@ -216,7 +230,5 @@ where
     }
 
     let phantom_data = PhantomData::<T>;
-    NonStaticAny::get_type_id(unsafe {
-        mem::transmute::<&dyn NonStaticAny, &(dyn NonStaticAny + 'static)>(&phantom_data)
-    })
+    NonStaticAny::get_type_id(SelfPtr(&raw const phantom_data as *const dyn NonStaticAny))
 }
