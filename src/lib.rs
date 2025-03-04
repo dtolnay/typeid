@@ -106,7 +106,7 @@
 //! ```
 
 #![no_std]
-#![doc(html_root_url = "https://docs.rs/typeid/1.0.2")]
+#![doc(html_root_url = "https://docs.rs/typeid/1.0.3")]
 #![allow(clippy::doc_markdown, clippy::inline_always)]
 
 extern crate self as typeid;
